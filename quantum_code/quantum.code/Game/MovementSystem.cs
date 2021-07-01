@@ -16,8 +16,8 @@ namespace Quantum
             public PlayerLink* Link;
         }
 
-        private double createProjectileTime = 1000;
-        private double createProjectileTimer = 0;
+        private FP createProjectileTime = 1;
+        private FP createProjectileTimer = 0;
         
         public override void Update(Frame f, ref Filter filter)
         {
@@ -40,9 +40,10 @@ namespace Quantum
                 filter.Transform->Rotation = FPQuaternion.LookRotation(input->RotateDirection.XOY);
             }
 
-            createProjectileTimer += GetDeltaTime();
+            createProjectileTimer += f.DeltaTime;
             if (createProjectileTimer >= createProjectileTime && input->isAttack)
             {
+                Log.Debug("create projectile! " + createProjectileTimer);
                 var projectilePrototype = f.FindAsset<EntityPrototype>(PROJECTILE_PROTOTYPE);
                 var entity = f.Create(projectilePrototype);
                // f.Events.CreateProjectile();
@@ -74,13 +75,14 @@ namespace Quantum
             
         }
 
-        private DateTime lastTime = DateTime.Now;
-        double GetDeltaTime()
-        {
-            double dT = (DateTime.Now - lastTime).Milliseconds; // / 1000
-            lastTime = DateTime.Now;
-            return dT;
-        }
+        // 퀀텀은 결정론적 방식을 사용함으로 롤백이 일어나기때문에 시스템 시간을 사용하면 안된다!
+        // private DateTime lastTime = DateTime.Now;
+        // double GetDeltaTime()
+        // {
+        //     double dT = (DateTime.Now - lastTime).Milliseconds; // / 1000
+        //     lastTime = DateTime.Now;
+        //     return dT;
+        // }
     }
     
 }

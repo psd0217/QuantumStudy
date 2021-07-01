@@ -41,6 +41,11 @@ MonoBehaviour:
         Id:
           Value: 5
       ResourcePath: DB/Configs/SimulationConfig
+    - Path: Resources/DB/Projectile|EntityView
+      AssetRef:
+        Id:
+          Value: 377824178688690862
+      ResourcePath: DB/Projectile
     - Path: Resources/DB/Map1
       AssetRef:
         Id:
@@ -61,6 +66,11 @@ MonoBehaviour:
         Id:
           Value: 2315207471759982837
       ResourcePath: DB/Palyer
+    - Path: Resources/DB/Projectile|EntityPrototype
+      AssetRef:
+        Id:
+          Value: 2535854400290039516
+      ResourcePath: DB/Projectile
     - Path: Resources/DB/NestedAssetType|EntityPrototype
       AssetRef:
         Id:
