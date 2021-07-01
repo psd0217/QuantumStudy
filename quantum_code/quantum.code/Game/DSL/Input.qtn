@@ -1,0 +1,14 @@
+﻿input
+{
+    FPVector2 MoveDirection;
+    FPVector2 RotateDirection;
+    bool isAttack;
+}
+
+component PlayerLink{
+    player_ref Player;
+}
+
+event CreateProjectile{
+
+}

@@ -1,0 +1,16 @@
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\quantum.console.runner.exe.config
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\quantum.console.runner.exe
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\quantum.console.runner.pdb
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\Newtonsoft.Json.dll
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\PhotonDeterministic.dll
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\quantum.code.dll
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\quantum.core.dll
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\Newtonsoft.Json.xml
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\PhotonDeterministic.pdb
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\quantum.core.pdb
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\bin\Debug\quantum.code.pdb
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\obj\Debug\quantum.console.runner.csproj.AssemblyReference.cache
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\obj\Debug\quantum.console.runner.csproj.CoreCompileInputs.cache
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\obj\Debug\quantum.console.runner.csproj.CopyComplete
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\obj\Debug\quantum.console.runner.exe
+F:\Study\2DBattleGround\quantum_code\quantum.console.runner\obj\Debug\quantum.console.runner.pdb
