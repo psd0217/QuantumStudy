@@ -1,0 +1,7 @@
+component WeaponSpec{
+    FP LastAttackTime;
+}
+
+component PlayerSpec{
+    FP HP;
+}

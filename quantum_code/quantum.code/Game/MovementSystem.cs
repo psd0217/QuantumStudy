@@ -16,8 +16,7 @@ namespace Quantum
             public PlayerLink* Link;
         }
 
-        private FP createProjectileTime = 1;
-        private FP createProjectileTimer = 0;
+        
         
         public override void Update(Frame f, ref Filter filter)
         {
@@ -30,24 +29,36 @@ namespace Quantum
             }
             filter.KCC->Move(f, filter.Entity, input->MoveDirection.XOY);
             
-            if (input->RotateDirection.SqrMagnitude > 1)
-            {
-                input->RotateDirection = input->RotateDirection.Normalized;
-            }
+            // if (input->RotateDirection.SqrMagnitude > 1)
+            // {
+                 input->RotateDirection = input->RotateDirection.Normalized;
+            // }
 
             if (input->RotateDirection != default)
             {
                 filter.Transform->Rotation = FPQuaternion.LookRotation(input->RotateDirection.XOY);
             }
 
-            createProjectileTimer += f.DeltaTime;
-            if (createProjectileTimer >= createProjectileTime && input->isAttack)
+            // f.DeltaTime 지역변수 받아쓰면 안됨!!!!
+            if (filter.Link->LastAttackTime + 1 <= f.ElapsedTime && input->isAttack)
             {
-                Log.Debug("create projectile! " + createProjectileTimer);
+                Log.Debug("create projectile! " + f.ElapsedTime);
+                //생성
                 var projectilePrototype = f.FindAsset<EntityPrototype>(PROJECTILE_PROTOTYPE);
-                var entity = f.Create(projectilePrototype);
+                var projectileCreation = f.Create(projectilePrototype);
+                //총알 스팩
+                f.Add<ProjectileSpec>(projectileCreation);
+                var projectileSpec = f.Unsafe.GetPointer<ProjectileSpec>(projectileCreation);
+                projectileSpec->Attacker = filter.Entity;
+                projectileSpec->Owner = filter.Link->Player;
+                projectileSpec->Power = FP._1;
+                projectileSpec->MoveDirection = input->RotateDirection;
+                //총알 위치
+                var transform = f.Unsafe.GetPointer<Transform3D>(projectileCreation);
+                transform->Position = filter.Transform->Position + input->RotateDirection.XOY;
                // f.Events.CreateProjectile();
-                createProjectileTimer = 0;
+                //createProjectileTimer = 0;
+                filter.Link->LastAttackTime = f.ElapsedTime;
             }
             
             // for (int i = 0; i < f.PlayerCount; i++)
@@ -57,7 +68,7 @@ namespace Quantum
             // }
         }
 
-        public void OnPlayerDataSet(Frame f, PlayerRef player)
+        public void OnPlayerDataSet(Frame f, PlayerRef player) //플레이어 초기값 셋팅
         {
             var data = f.GetPlayerData(player);
             var prototype = f.FindAsset<EntityPrototype>(data.CharacterPrototype.Id);
@@ -68,6 +79,8 @@ namespace Quantum
             PlayerLink* playerLink = f.Unsafe.GetPointer<PlayerLink>(e);
             Transform3D* transform3D = f.Unsafe.GetPointer<Transform3D>(e);
             playerLink->Player = player;
+            playerLink->LastAttackTime = f.ElapsedTime;
+            playerLink->HP = FP._10;
 
            //최초 위치 값
             transform3D->Position.X = player._index;

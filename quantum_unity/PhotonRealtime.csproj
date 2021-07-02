@@ -301,31 +301,31 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Library/PackageCache/com.unity.analytics@3.5.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Library/PackageCache/com.unity.analytics@3.5.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Library/PackageCache/com.unity.analytics@3.5.3/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Library/PackageCache/com.unity.analytics@3.5.3/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="quantum.core">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Assets/Photon/Quantum/Assemblies/quantum.core.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Assets/Photon/Quantum/Assemblies/quantum.core.dll</HintPath>
  </Reference>
  <Reference Include="quantum.code">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Assets/Photon/Quantum/Assemblies/quantum.code.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Assets/Photon/Quantum/Assemblies/quantum.code.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Library/PackageCache/com.unity.analytics@3.5.3/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Library/PackageCache/com.unity.analytics@3.5.3/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="PhotonDeterministic">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Assets/Photon/Quantum/Assemblies/PhotonDeterministic.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Assets/Photon/Quantum/Assemblies/PhotonDeterministic.dll</HintPath>
  </Reference>
  <Reference Include="LiteNetLib">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Assets/Plugins/LiteNetLib/Editor/LiteNetLib.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Assets/Plugins/LiteNetLib/Editor/LiteNetLib.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -673,10 +673,10 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.5f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>F:/Study/2DBattleGround/quantum_unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>F:/Study/QuantumStudy/quantum_unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

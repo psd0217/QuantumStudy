@@ -1099,7 +1099,7 @@ namespace Quantum {
 }
 
 // Core/FrameEvents.cs
-﻿
+ 
 namespace Quantum {
   partial class Frame {
     public partial struct FrameEvents {

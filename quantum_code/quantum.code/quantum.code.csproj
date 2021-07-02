@@ -60,6 +60,7 @@
     <Compile Include="FrameContext.User.cs" />
     <Compile Include="Game\CommandSpawnProjectile.cs" />
     <Compile Include="Game\MovementSystem.cs" />
+    <Compile Include="Game\ProjectileSystem.cs" />
     <Compile Include="RuntimeConfig.User.cs" />
     <Compile Include="RuntimePlayer.User.cs" />
     <Compile Include="SimulationConfig.User.cs" />
@@ -68,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game\DSL\Input.qtn" />
+    <Content Include="Game\DSL\Player.qtn" />
     <Content Include="Game\DSL\Projectile.qtn" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

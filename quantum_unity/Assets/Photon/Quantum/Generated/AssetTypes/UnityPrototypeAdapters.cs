@@ -11,12 +11,14 @@ namespace Quantum.Prototypes.Unity {
     public Photon.Deterministic.FP Power;
     [Quantum.LocalReference]
     public global::EntityPrototype Attacker;
+    public Photon.Deterministic.FPVector2 MoveDirection;
 
     public Quantum.Prototypes.ProjectileSpec_Prototype Convert(EntityPrototypeConverter converter) {
       var result = new Quantum.Prototypes.ProjectileSpec_Prototype();
       result.Owner = this.Owner;
       result.Power = this.Power;
       converter.Convert(this.Attacker, out result.Attacker);
+      result.MoveDirection = this.MoveDirection;
       return result;
     }
   }

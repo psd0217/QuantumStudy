@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2650010805147523097}
   - component: {fileID: 1935250823562755789}
   - component: {fileID: 8087480597759565263}
+  - component: {fileID: -7268387351246176670}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -103,7 +104,7 @@ MonoBehaviour:
     PositionOffset:
       RawValue: 0
   PhysicsCollider:
-    IsTrigger: 0
+    IsTrigger: 1
     Material:
       Id:
         Value: 0
@@ -166,7 +167,7 @@ MonoBehaviour:
       Value: 0
   PhysicsBody:
     IsEnabled: 0
-    Version: 0
+    Version: 1
     Config2D: 116
     Config3D: 58
     RotationFreeze: 0
@@ -252,6 +253,20 @@ MonoBehaviour:
   OnEntityDestroyed:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-7268387351246176670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678244091848075572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44728193c9fed99488da1294ba360597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prototype:
+    _empty_prototype_dummy_field_: 0
 --- !u!114 &-6737715756812488810
 MonoBehaviour:
   m_ObjectHideFlags: 0

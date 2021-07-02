@@ -1,5 +1,9 @@
+component Projectile{
+}
+
 component ProjectileSpec{
     player_ref Owner;
     FP Power;
     entity_ref Attacker;
+    FPVector2 MoveDirection;
 }
