@@ -58,6 +58,7 @@
     <Compile Include="Core\Core.cs" />
     <Compile Include="Frame.User.cs" />
     <Compile Include="FrameContext.User.cs" />
+    <Compile Include="Game\CallbackSystem.cs" />
     <Compile Include="Game\CommandSpawnProjectile.cs" />
     <Compile Include="Game\MovementSystem.cs" />
     <Compile Include="Game\ProjectileSystem.cs" />

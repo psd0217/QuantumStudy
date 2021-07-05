@@ -537,6 +537,7 @@ namespace Quantum {
     }
   }
   public unsafe partial class Frame {
+    private ISignalOnDamage[] _ISignalOnDamageSystems;
     partial void AllocGen() {
       _globals = (_globals_*)Context.Allocator.AllocAndClear(sizeof(_globals_));
     }
@@ -555,6 +556,7 @@ namespace Quantum {
         ComponentTypeId.Add<Quantum.WeaponSpec>(new ComponentCallbacks(Quantum.WeaponSpec.Serialize));
       });
       Initialize(this, this.SimulationConfig.Entities);
+      _ISignalOnDamageSystems = BuildSignalsArray<ISignalOnDamage>();
       _ComponentSignalsOnAdded = new ComponentReactiveCallbackInvoker[ComponentTypeId.Type.Length];
       _ComponentSignalsOnRemoved = new ComponentReactiveCallbackInvoker[ComponentTypeId.Type.Length];
       BuildSignalsArrayOnComponentAdded<CharacterController2D>();
@@ -610,6 +612,16 @@ namespace Quantum {
       return _globals->input.GetPointer(player);
     }
     public unsafe partial struct FrameSignals {
+      public void OnDamage(FP damage, EntityRef entity) {
+        var array = _f._ISignalOnDamageSystems;
+        var systems = &(_f._globals->Systems);
+        for (Int32 i = 0; i < array.Length; ++i) {
+          var s = array[i];
+          if (BitSet256.IsSet(systems, s.RuntimeIndex)) {
+            s.OnDamage(_f, damage, entity);
+          }
+        }
+      }
     }
     public unsafe partial struct FrameEvents {
       public const Int32 EVENT_TYPE_COUNT = 1;
@@ -631,6 +643,9 @@ namespace Quantum {
     }
     public unsafe partial struct FrameAssets {
     }
+  }
+  public unsafe interface ISignalOnDamage : ISignal {
+    void OnDamage(Frame f, FP damage, EntityRef entity);
   }
   public unsafe partial class EventCreateProjectile : EventBase {
     public new const Int32 ID = 0;

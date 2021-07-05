@@ -5,3 +5,5 @@ component WeaponSpec{
 component PlayerSpec{
     FP HP;
 }
+
+signal OnDamage(FP damage, entity_ref entity);

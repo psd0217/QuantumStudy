@@ -59,6 +59,8 @@ namespace Quantum
                // f.Events.CreateProjectile();
                 //createProjectileTimer = 0;
                 filter.Link->LastAttackTime = f.ElapsedTime;
+                
+                
             }
             
             // for (int i = 0; i < f.PlayerCount; i++)
@@ -83,7 +85,8 @@ namespace Quantum
             playerLink->HP = FP._10;
 
            //최초 위치 값
-            transform3D->Position.X = player._index;
+           transform3D->Position.X = f.RNG->Next(-30, 30);
+           transform3D->Position.Z = f.RNG->Next(-15, 15);
             Log.Debug("OnPlayerDataSet entity : " + e + " player : " + player + " position : " + transform3D->Position + " position.x : " + transform3D->Position.X);
             
         }

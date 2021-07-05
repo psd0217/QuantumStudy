@@ -164,7 +164,7 @@ MonoBehaviour:
       IsPersistent: 1
     Layer: 0
     CallbackFlags:
-      Value: 0
+      Value: 128
   PhysicsBody:
     IsEnabled: 0
     Version: 1
