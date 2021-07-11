@@ -490,23 +490,29 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct ProjectileSpec : Quantum.IComponent {
-    public const Int32 SIZE = 40;
+    public const Int32 SIZE = 64;
     public const Int32 ALIGNMENT = 8;
     [FieldOffset(8)]
     public EntityRef Attacker;
-    [FieldOffset(24)]
+    [FieldOffset(16)]
+    public FP Distance;
+    [FieldOffset(32)]
     public FPVector2 MoveDirection;
     [FieldOffset(0)]
     public PlayerRef Owner;
-    [FieldOffset(16)]
+    [FieldOffset(24)]
     public FP Power;
+    [FieldOffset(48)]
+    public FPVector2 StartPosition;
     public override Int32 GetHashCode() {
       unchecked { 
         var hash = 83;
         hash = hash * 31 + Attacker.GetHashCode();
+        hash = hash * 31 + Distance.GetHashCode();
         hash = hash * 31 + MoveDirection.GetHashCode();
         hash = hash * 31 + Owner.GetHashCode();
         hash = hash * 31 + Power.GetHashCode();
+        hash = hash * 31 + StartPosition.GetHashCode();
         return hash;
       }
     }
@@ -514,8 +520,10 @@ namespace Quantum {
         var p = (ProjectileSpec*)ptr;
         PlayerRef.Serialize(&p->Owner, serializer);
         EntityRef.Serialize(&p->Attacker, serializer);
+        FP.Serialize(&p->Distance, serializer);
         FP.Serialize(&p->Power, serializer);
         FPVector2.Serialize(&p->MoveDirection, serializer);
+        FPVector2.Serialize(&p->StartPosition, serializer);
     }
   }
   [StructLayout(LayoutKind.Explicit)]
@@ -889,6 +897,8 @@ namespace Quantum.Prototypes {
     public FP Power;
     public MapEntityId Attacker;
     public FPVector2 MoveDirection;
+    public FP Distance;
+    public FPVector2 StartPosition;
     partial void MaterializeUser(Frame frame, ref ProjectileSpec result, in PrototypeMaterializationContext context);
     public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
       ProjectileSpec component = default;
@@ -902,9 +912,11 @@ namespace Quantum.Prototypes {
     }
     public void Materialize(Frame frame, ref ProjectileSpec result, in PrototypeMaterializationContext context) {
       result.Attacker = default;
+      result.Distance = this.Distance;
       result.MoveDirection = this.MoveDirection;
       result.Owner = this.Owner;
       result.Power = this.Power;
+      result.StartPosition = this.StartPosition;
       MaterializeUser(frame, ref result, in context);
     }
     public void SetEntityRefs(Frame frame, ref ProjectileSpec result, MapEntityLookup mapEntities) {

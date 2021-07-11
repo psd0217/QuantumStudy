@@ -6,32 +6,15 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    // private void OnEnable()
-    // {
-    //     var frame = QuantumRunner.Default.Game.Frames.Verified;
-    //     List<EntityRef> entitys = new List<EntityRef>();
-    //     frame.GetAllEntityRefs(entitys);
-    //     if (entitys.Count > 0)
-    //     {
-    //         foreach (var entity in entitys)
-    //         {
-    //             unsafe
-    //             {
-    //                 if(frame.Has<PlayerLink>(entity))
-    //                 {
-    //                     PlayerLink* playerLink;
-    //                     playerLink = frame.Unsafe.GetPointer<PlayerLink>(entity);
-    //                     playerLink->Player
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-    //
-    // private void Update()
-    // {
-    //     
-    //
-    //   
-    // }
+
+    public Transform target;
+    public int cameraY = 10;
+
+     private void Update()
+     {
+        if (target == null)
+            return;
+
+        transform.position = new Vector3(target.position.x, cameraY, target.position.z);
+     }
 }

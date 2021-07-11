@@ -52,11 +52,14 @@ namespace Quantum
                 projectileSpec->Attacker = filter.Entity;
                 projectileSpec->Owner = filter.Link->Player;
                 projectileSpec->Power = FP._1;
+                projectileSpec->Distance = FP._10;
                 projectileSpec->MoveDirection = input->RotateDirection;
+                
                 //총알 위치
                 var transform = f.Unsafe.GetPointer<Transform3D>(projectileCreation);
                 transform->Position = filter.Transform->Position + input->RotateDirection.XOY;
-               // f.Events.CreateProjectile();
+                projectileSpec->StartPosition = transform->Position.XZ;
+                // f.Events.CreateProjectile();
                 //createProjectileTimer = 0;
                 filter.Link->LastAttackTime = f.ElapsedTime;
                 
@@ -85,8 +88,8 @@ namespace Quantum
             playerLink->HP = FP._10;
 
            //최초 위치 값
-           transform3D->Position.X = f.RNG->Next(-30, 30);
-           transform3D->Position.Z = f.RNG->Next(-15, 15);
+           transform3D->Position.X = f.RNG->Next(-70, 70);
+           transform3D->Position.Z = f.RNG->Next(-70, 70);
             Log.Debug("OnPlayerDataSet entity : " + e + " player : " + player + " position : " + transform3D->Position + " position.x : " + transform3D->Position.X);
             
         }

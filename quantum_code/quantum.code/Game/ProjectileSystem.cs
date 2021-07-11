@@ -15,6 +15,11 @@ namespace Quantum
         public override void Update(Frame f, ref Filter filter)
         {
             filter.Transform->Position += filter.ProjectileSpec->MoveDirection.XOY * f.DeltaTime * FP._8;
+
+            if (FPVector2.Distance(filter.Transform->Position.XZ, filter.ProjectileSpec->StartPosition.XY) > filter.ProjectileSpec->Distance)
+                f.Destroy(filter.Entity);
+
+
             //Log.Debug(filter.ProjectileSpec->Owner + "  " + filter.ProjectileSpec->Power);
         }
 

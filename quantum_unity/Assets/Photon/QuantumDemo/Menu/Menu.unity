@@ -4731,7 +4731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Config:
-    Seed: 0
+    Seed: 150
     Map:
       Id:
         Value: 0

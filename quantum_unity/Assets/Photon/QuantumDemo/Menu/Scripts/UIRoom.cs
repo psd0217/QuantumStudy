@@ -266,6 +266,7 @@ namespace Quantum.Demo {
       var config = RuntimeConfigContainer != null ? RuntimeConfig.FromByteArray(RuntimeConfig.ToByteArray(RuntimeConfigContainer.Config)) : new RuntimeConfig();
 
       config.Map.Id = mapGuid;
+            config.Seed = UnityEngine.Random.Range(0, 100);
 
       var param = new QuantumRunner.StartParameters {
         RuntimeConfig       = config,

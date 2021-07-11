@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1986716564135334736}
   - component: {fileID: 1986716564135334698}
   - component: {fileID: 1562332289207681650}
+  - component: {fileID: 5602391361377317222}
   m_Layer: 0
   m_Name: Palyer
   m_TagString: Untagged
@@ -368,6 +369,10 @@ MonoBehaviour:
   Prototype:
     Player:
       _index: 1
+    LastAttackTime:
+      RawValue: 0
+    HP:
+      RawValue: 0
 --- !u!114 &1562332289207681650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +387,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrototype: {fileID: -6737715756812488810, guid: 3f7781d825b27514fb478cde2ec681c5,
     type: 3}
+--- !u!114 &5602391361377317222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986716564135334737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e833e3d903f3354588ee8b3049d9af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2396978212290342201
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,4 +6,6 @@ component ProjectileSpec{
     FP Power;
     entity_ref Attacker;
     FPVector2 MoveDirection;
+    FP Distance;
+    FPVector2 StartPosition;
 }

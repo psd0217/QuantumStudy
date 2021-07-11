@@ -12,6 +12,8 @@ namespace Quantum.Prototypes.Unity {
     [Quantum.LocalReference]
     public global::EntityPrototype Attacker;
     public Photon.Deterministic.FPVector2 MoveDirection;
+    public Photon.Deterministic.FP Distance;
+    public Photon.Deterministic.FPVector2 StartPosition;
 
     public Quantum.Prototypes.ProjectileSpec_Prototype Convert(EntityPrototypeConverter converter) {
       var result = new Quantum.Prototypes.ProjectileSpec_Prototype();
@@ -19,6 +21,8 @@ namespace Quantum.Prototypes.Unity {
       result.Power = this.Power;
       converter.Convert(this.Attacker, out result.Attacker);
       result.MoveDirection = this.MoveDirection;
+      result.Distance = this.Distance;
+      result.StartPosition = this.StartPosition;
       return result;
     }
   }
