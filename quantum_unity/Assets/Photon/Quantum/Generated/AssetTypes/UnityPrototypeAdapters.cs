@@ -7,22 +7,39 @@ using System;
 namespace Quantum.Prototypes.Unity {
   [System.Serializable]
   public class ProjectileSpec_Prototype : Quantum.IPrototypeAdapter<Quantum.Prototypes.ProjectileSpec_Prototype> {
-    public Quantum.PlayerRef Owner;
-    public Photon.Deterministic.FP Power;
     [Quantum.LocalReference]
     public global::EntityPrototype Attacker;
+    public Photon.Deterministic.FP Power;
     public Photon.Deterministic.FPVector2 MoveDirection;
     public Photon.Deterministic.FP Distance;
     public Photon.Deterministic.FPVector2 StartPosition;
 
     public Quantum.Prototypes.ProjectileSpec_Prototype Convert(EntityPrototypeConverter converter) {
       var result = new Quantum.Prototypes.ProjectileSpec_Prototype();
-      result.Owner = this.Owner;
-      result.Power = this.Power;
       converter.Convert(this.Attacker, out result.Attacker);
+      result.Power = this.Power;
       result.MoveDirection = this.MoveDirection;
       result.Distance = this.Distance;
       result.StartPosition = this.StartPosition;
+      return result;
+    }
+  }
+  [System.Serializable]
+  public class WeaponSpec_Prototype : Quantum.IPrototypeAdapter<Quantum.Prototypes.WeaponSpec_Prototype> {
+    [Quantum.LocalReference]
+    public global::EntityPrototype Attacker;
+    public Photon.Deterministic.FP LastAttackTime;
+    public Photon.Deterministic.FP Power;
+    public Photon.Deterministic.FP AttackSpeed;
+    public System.Int32 CurrentWeaponSlot;
+
+    public Quantum.Prototypes.WeaponSpec_Prototype Convert(EntityPrototypeConverter converter) {
+      var result = new Quantum.Prototypes.WeaponSpec_Prototype();
+      converter.Convert(this.Attacker, out result.Attacker);
+      result.LastAttackTime = this.LastAttackTime;
+      result.Power = this.Power;
+      result.AttackSpeed = this.AttackSpeed;
+      result.CurrentWeaponSlot = this.CurrentWeaponSlot;
       return result;
     }
   }

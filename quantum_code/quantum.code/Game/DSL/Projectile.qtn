@@ -2,9 +2,8 @@ component Projectile{
 }
 
 component ProjectileSpec{
-    player_ref Owner;
-    FP Power;
     entity_ref Attacker;
+    FP Power;
     FPVector2 MoveDirection;
     FP Distance;
     FPVector2 StartPosition;

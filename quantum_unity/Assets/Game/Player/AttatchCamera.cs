@@ -13,6 +13,8 @@ public class AttatchCamera : MonoBehaviour
             FollowCamera follow = Camera.main.gameObject.GetComponent<FollowCamera>();
             follow.target = this.transform;
         }
+
+        QuantumRunner.Default.Game.Frames.Verified.Unsafe.GetPointer<EntityComponentPlayerLink>();
     }
 
     

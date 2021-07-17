@@ -46,6 +46,11 @@ MonoBehaviour:
         Id:
           Value: 377824178688690862
       ResourcePath: DB/Projectile
+    - Path: Resources/DB/Weapon00|EntityPrototype
+      AssetRef:
+        Id:
+          Value: 493409324068149738
+      ResourcePath: DB/Weapon00
     - Path: Resources/DB/Map1
       AssetRef:
         Id:
@@ -61,11 +66,21 @@ MonoBehaviour:
         Id:
           Value: 2137645651936138071
       ResourcePath: DB/CharacterController3DConfigAsset
+    - Path: Resources/DB/Weapon01|EntityPrototype
+      AssetRef:
+        Id:
+          Value: 2246580350376938512
+      ResourcePath: DB/Weapon01
     - Path: Resources/DB/Palyer|EntityPrototype
       AssetRef:
         Id:
           Value: 2315207471759982837
       ResourcePath: DB/Palyer
+    - Path: Resources/DB/Weapon00|EntityView
+      AssetRef:
+        Id:
+          Value: 2406833784038883480
+      ResourcePath: DB/Weapon00
     - Path: Resources/DB/Projectile|EntityPrototype
       AssetRef:
         Id:
@@ -81,3 +96,8 @@ MonoBehaviour:
         Id:
           Value: 3607286658768092644
       ResourcePath: DB/PhysicsMaterialAsset
+    - Path: Resources/DB/Weapon01|EntityView
+      AssetRef:
+        Id:
+          Value: 4295326335415409022
+      ResourcePath: DB/Weapon01

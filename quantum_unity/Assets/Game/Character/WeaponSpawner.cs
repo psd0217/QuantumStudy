@@ -27,10 +27,10 @@ public class WeaponSpawner : MonoBehaviour
     
 
     public void SpawnProjectile() {
-        CommandSpawnProjectile command = new CommandSpawnProjectile()
-        {
-            projectilePrototypeGUID = projectilePrototype.Settings.Guid.Value,
-        };
-        QuantumRunner.Default.Game.SendCommand(command);
+        //CommandSpawnProjectile command = new CommandSpawnProjectile()
+        //{
+        //    projectilePrototypeGUID = projectilePrototype.Settings.Guid.Value,
+        //};
+        //QuantumRunner.Default.Game.SendCommand(command);
     }
 }

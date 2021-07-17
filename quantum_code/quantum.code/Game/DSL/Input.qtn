@@ -3,12 +3,11 @@
     FPVector2 MoveDirection;
     FPVector2 RotateDirection;
     bool isAttack;
+    int currentWeaponSlot;
 }
 
 component PlayerLink{
     player_ref Player;
-    FP LastAttackTime;
-    FP HP;
 }
 
 

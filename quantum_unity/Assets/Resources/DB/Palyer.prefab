@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1986716563840153150
 Transform:
   m_ObjectHideFlags: 0
@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: 1986716564135334743}
   - component: {fileID: 1986716564135334736}
   - component: {fileID: 1986716564135334698}
-  - component: {fileID: 1562332289207681650}
   - component: {fileID: 5602391361377317222}
+  - component: {fileID: 6958217500960321198}
   m_Layer: 0
   m_Name: Palyer
   m_TagString: Untagged
@@ -369,24 +369,6 @@ MonoBehaviour:
   Prototype:
     Player:
       _index: 1
-    LastAttackTime:
-      RawValue: 0
-    HP:
-      RawValue: 0
---- !u!114 &1562332289207681650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986716564135334737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dca160024393f241adb2da49d48bb29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrototype: {fileID: -6737715756812488810, guid: 3f7781d825b27514fb478cde2ec681c5,
-    type: 3}
 --- !u!114 &5602391361377317222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +381,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e833e3d903f3354588ee8b3049d9af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6958217500960321198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986716564135334737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4d43d78de0102438f3437ed6edfa9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prototype:
+    HP:
+      RawValue: 0
+    CurrentWeaponSlot: 0
+    RotateDirection:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+    Shot:
+      Value: 0
 --- !u!114 &2396978212290342201
 MonoBehaviour:
   m_ObjectHideFlags: 0
