@@ -340,6 +340,8 @@ namespace Quantum {
     [FieldOffset(24)]
     public FPVector2 RotateDirection;
     [FieldOffset(0)]
+    public Int32 currentWeaponSlot;
+    [FieldOffset(4)]
     public QBoolean isAttack;
     public const int MAX_COUNT = 6;
     public override Int32 GetHashCode() {
@@ -347,6 +349,7 @@ namespace Quantum {
         var hash = 61;
         hash = hash * 31 + MoveDirection.GetHashCode();
         hash = hash * 31 + RotateDirection.GetHashCode();
+        hash = hash * 31 + currentWeaponSlot.GetHashCode();
         hash = hash * 31 + isAttack.GetHashCode();
         return hash;
       }
@@ -371,6 +374,7 @@ namespace Quantum {
     }
     public static void Serialize(void* ptr, FrameSerializer serializer) {
         var p = (Input*)ptr;
+        serializer.Stream.Serialize(&p->currentWeaponSlot);
         QBoolean.Serialize(&p->isAttack, serializer);
         FPVector2.Serialize(&p->MoveDirection, serializer);
         FPVector2.Serialize(&p->RotateDirection, serializer);
@@ -430,19 +434,13 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct PlayerLink : Quantum.IComponent {
-    public const Int32 SIZE = 24;
-    public const Int32 ALIGNMENT = 8;
-    [FieldOffset(8)]
-    public FP HP;
-    [FieldOffset(16)]
-    public FP LastAttackTime;
+    public const Int32 SIZE = 4;
+    public const Int32 ALIGNMENT = 4;
     [FieldOffset(0)]
     public PlayerRef Player;
     public override Int32 GetHashCode() {
       unchecked { 
         var hash = 71;
-        hash = hash * 31 + HP.GetHashCode();
-        hash = hash * 31 + LastAttackTime.GetHashCode();
         hash = hash * 31 + Player.GetHashCode();
         return hash;
       }
@@ -450,26 +448,36 @@ namespace Quantum {
     public static void Serialize(void* ptr, FrameSerializer serializer) {
         var p = (PlayerLink*)ptr;
         PlayerRef.Serialize(&p->Player, serializer);
-        FP.Serialize(&p->HP, serializer);
-        FP.Serialize(&p->LastAttackTime, serializer);
     }
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct PlayerSpec : Quantum.IComponent {
-    public const Int32 SIZE = 8;
+    public const Int32 SIZE = 32;
     public const Int32 ALIGNMENT = 8;
     [FieldOffset(0)]
+    public Int32 CurrentWeaponSlot;
+    [FieldOffset(8)]
     public FP HP;
+    [FieldOffset(16)]
+    public FPVector2 RotateDirection;
+    [FieldOffset(4)]
+    public QBoolean Shot;
     public override Int32 GetHashCode() {
       unchecked { 
         var hash = 73;
+        hash = hash * 31 + CurrentWeaponSlot.GetHashCode();
         hash = hash * 31 + HP.GetHashCode();
+        hash = hash * 31 + RotateDirection.GetHashCode();
+        hash = hash * 31 + Shot.GetHashCode();
         return hash;
       }
     }
     public static void Serialize(void* ptr, FrameSerializer serializer) {
         var p = (PlayerSpec*)ptr;
+        serializer.Stream.Serialize(&p->CurrentWeaponSlot);
+        QBoolean.Serialize(&p->Shot, serializer);
         FP.Serialize(&p->HP, serializer);
+        FPVector2.Serialize(&p->RotateDirection, serializer);
     }
   }
   [StructLayout(LayoutKind.Explicit)]
@@ -528,20 +536,36 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct WeaponSpec : Quantum.IComponent {
-    public const Int32 SIZE = 8;
+    public const Int32 SIZE = 40;
     public const Int32 ALIGNMENT = 8;
+    [FieldOffset(16)]
+    public FP AttackSpeed;
+    [FieldOffset(8)]
+    public EntityRef Attacker;
     [FieldOffset(0)]
+    public Int32 CurrentWeaponSlot;
+    [FieldOffset(24)]
     public FP LastAttackTime;
+    [FieldOffset(32)]
+    public FP Power;
     public override Int32 GetHashCode() {
       unchecked { 
         var hash = 89;
+        hash = hash * 31 + AttackSpeed.GetHashCode();
+        hash = hash * 31 + Attacker.GetHashCode();
+        hash = hash * 31 + CurrentWeaponSlot.GetHashCode();
         hash = hash * 31 + LastAttackTime.GetHashCode();
+        hash = hash * 31 + Power.GetHashCode();
         return hash;
       }
     }
     public static void Serialize(void* ptr, FrameSerializer serializer) {
         var p = (WeaponSpec*)ptr;
+        serializer.Stream.Serialize(&p->CurrentWeaponSlot);
+        EntityRef.Serialize(&p->Attacker, serializer);
+        FP.Serialize(&p->AttackSpeed, serializer);
         FP.Serialize(&p->LastAttackTime, serializer);
+        FP.Serialize(&p->Power, serializer);
     }
   }
   public unsafe partial class Frame {
@@ -614,6 +638,7 @@ namespace Quantum {
       i->MoveDirection = input.MoveDirection;
       i->RotateDirection = input.RotateDirection;
       i->isAttack = input.isAttack;
+      i->currentWeaponSlot = input.currentWeaponSlot;
     }
     public Input* GetPlayerInput(Int32 player) {
       if ((uint)player >= (uint)_globals->input.Length) { throw new System.ArgumentOutOfRangeException("player"); }
@@ -803,10 +828,12 @@ namespace Quantum.Prototypes {
     public FPVector2 MoveDirection;
     public FPVector2 RotateDirection;
     public QBoolean isAttack;
+    public Int32 currentWeaponSlot;
     partial void MaterializeUser(Frame frame, ref Input result, in PrototypeMaterializationContext context);
     public void Materialize(Frame frame, ref Input result, in PrototypeMaterializationContext context) {
       result.MoveDirection = this.MoveDirection;
       result.RotateDirection = this.RotateDirection;
+      result.currentWeaponSlot = this.currentWeaponSlot;
       result.isAttack = this.isAttack;
       MaterializeUser(frame, ref result, in context);
     }
@@ -815,8 +842,6 @@ namespace Quantum.Prototypes {
   [ComponentPrototypeAttribute(typeof(PlayerLink))]
   public unsafe sealed partial class PlayerLink_Prototype : ComponentPrototype<PlayerLink> {
     public PlayerRef Player;
-    public FP LastAttackTime;
-    public FP HP;
     partial void MaterializeUser(Frame frame, ref PlayerLink result, in PrototypeMaterializationContext context);
     public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
       PlayerLink component = default;
@@ -829,8 +854,6 @@ namespace Quantum.Prototypes {
       return f.Set(entity, component) == SetResult.ComponentAdded;
     }
     public void Materialize(Frame frame, ref PlayerLink result, in PrototypeMaterializationContext context) {
-      result.HP = this.HP;
-      result.LastAttackTime = this.LastAttackTime;
       result.Player = this.Player;
       MaterializeUser(frame, ref result, in context);
     }
@@ -844,6 +867,9 @@ namespace Quantum.Prototypes {
   [ComponentPrototypeAttribute(typeof(PlayerSpec))]
   public unsafe sealed partial class PlayerSpec_Prototype : ComponentPrototype<PlayerSpec> {
     public FP HP;
+    public Int32 CurrentWeaponSlot;
+    public FPVector2 RotateDirection;
+    public QBoolean Shot;
     partial void MaterializeUser(Frame frame, ref PlayerSpec result, in PrototypeMaterializationContext context);
     public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
       PlayerSpec component = default;
@@ -856,7 +882,10 @@ namespace Quantum.Prototypes {
       return f.Set(entity, component) == SetResult.ComponentAdded;
     }
     public void Materialize(Frame frame, ref PlayerSpec result, in PrototypeMaterializationContext context) {
+      result.CurrentWeaponSlot = this.CurrentWeaponSlot;
       result.HP = this.HP;
+      result.RotateDirection = this.RotateDirection;
+      result.Shot = this.Shot;
       MaterializeUser(frame, ref result, in context);
     }
     public void SetEntityRefs(Frame frame, ref PlayerSpec result, MapEntityLookup mapEntities) {
@@ -929,7 +958,11 @@ namespace Quantum.Prototypes {
   [System.SerializableAttribute()]
   [ComponentPrototypeAttribute(typeof(WeaponSpec))]
   public unsafe sealed partial class WeaponSpec_Prototype : ComponentPrototype<WeaponSpec> {
+    public MapEntityId Attacker;
     public FP LastAttackTime;
+    public FP Power;
+    public FP AttackSpeed;
+    public Int32 CurrentWeaponSlot;
     partial void MaterializeUser(Frame frame, ref WeaponSpec result, in PrototypeMaterializationContext context);
     public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
       WeaponSpec component = default;
@@ -942,10 +975,15 @@ namespace Quantum.Prototypes {
       return f.Set(entity, component) == SetResult.ComponentAdded;
     }
     public void Materialize(Frame frame, ref WeaponSpec result, in PrototypeMaterializationContext context) {
+      result.AttackSpeed = this.AttackSpeed;
+      result.Attacker = default;
+      result.CurrentWeaponSlot = this.CurrentWeaponSlot;
       result.LastAttackTime = this.LastAttackTime;
+      result.Power = this.Power;
       MaterializeUser(frame, ref result, in context);
     }
     public void SetEntityRefs(Frame frame, ref WeaponSpec result, MapEntityLookup mapEntities) {
+      PrototypeValidator.FindMapEntity(this.Attacker, mapEntities, out result.Attacker);
     }
     public override void Dispatch(ComponentPrototypeVisitorBase visitor) {
       ((ComponentPrototypeVisitor)visitor).Visit(this);

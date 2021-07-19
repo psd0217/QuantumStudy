@@ -4,5 +4,5 @@
  **/
 
 [UnityEngine.DisallowMultipleComponent()]
-public sealed partial class EntityComponentWeaponSpec : EntityComponentBase<Quantum.Prototypes.WeaponSpec_Prototype> {
+public sealed partial class EntityComponentWeaponSpec : EntityComponentBase<Quantum.Prototypes.WeaponSpec_Prototype, Quantum.Prototypes.Unity.WeaponSpec_Prototype> {
 }

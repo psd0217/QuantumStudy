@@ -1,9 +1,16 @@
 component WeaponSpec{
+    entity_ref Attacker;
     FP LastAttackTime;
+    FP Power;
+    FP AttackSpeed;
+    int CurrentWeaponSlot;
 }
 
 component PlayerSpec{
     FP HP;
+    int CurrentWeaponSlot;
+    FPVector2 RotateDirection;
+    bool Shot;
 }
 
 signal OnDamage(FP damage, entity_ref entity);

@@ -8,4 +8,5 @@ component ProjectileSpec{
     FPVector2 MoveDirection;
     FP Distance;
     FPVector2 StartPosition;
+
 }
