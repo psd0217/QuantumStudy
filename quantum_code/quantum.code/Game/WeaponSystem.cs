@@ -17,6 +17,11 @@ namespace Quantum
 
 		public override void Update(Frame f, ref Filter filter)
 		{
+            if (f.Has<PlayerSpec>(filter.Weapon->Attacker) == false)
+            {
+                f.Destroy(filter.Entity);
+                return;
+            }
 
             var attacker = f.Unsafe.GetPointer<PlayerSpec>(filter.Weapon->Attacker);
             var playerTransform = f.Unsafe.GetPointer<Transform3D>(filter.Weapon->Attacker);
@@ -51,6 +56,7 @@ namespace Quantum
             if (filter.Weapon->CurrentWeaponSlot != attacker->CurrentWeaponSlot)
             {
                 Log.Debug("Change Weapon!! " + filter.Weapon->CurrentWeaponSlot + "->" + attacker->CurrentWeaponSlot);
+                filter.Weapon->CurrentWeaponSlot = attacker->CurrentWeaponSlot;
 
                 var weaponPrototype = f.FindAsset<EntityPrototype>(string.Format(WEAPON_PROTOTYPE, attacker->CurrentWeaponSlot.ToString("00")));
                 var weaponCreation = f.Create(weaponPrototype);
@@ -58,7 +64,7 @@ namespace Quantum
                 //weaponSpec->LastAttackTime = f.ElapsedTime;
                 //weaponSpec->Power = FP._1;
                 weaponSpec->Attacker = filter.Weapon->Attacker;
-                weaponSpec->CurrentWeaponSlot = attacker->CurrentWeaponSlot;
+                weaponSpec->CurrentWeaponSlot = filter.Weapon->CurrentWeaponSlot;
 
                 f.Destroy(filter.Entity);
             }

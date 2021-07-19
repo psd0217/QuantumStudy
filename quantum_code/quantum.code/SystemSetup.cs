@@ -21,7 +21,7 @@ namespace Quantum {
         // user systems go here
         new MovementSystem(),
         new ProjectileSystem(),
-        new WeaponSystem(),
+        new CallbackSystem(),
       };
     }
   }

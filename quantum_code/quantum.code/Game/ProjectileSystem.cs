@@ -27,11 +27,11 @@ namespace Quantum
         public void OnTriggerEnter3D(Frame frame, TriggerInfo3D info)
         {
             if(frame.Has<ProjectileSpec>(info.Entity) == false) return;
-            if(frame.Has<PlayerSpec>(info.Other) == false) return;
+            if(frame.Has<PlayerLink>(info.Other) == false) return;
             
 
             var projectileSpec = frame.Unsafe.GetPointer<ProjectileSpec>(info.Entity);
-            var playerSpec = frame.Unsafe.GetPointer<PlayerSpec>(info.Other);
+            var playerSpec = frame.Unsafe.GetPointer<PlayerLink>(info.Other);
             playerSpec->HP -= projectileSpec->Power;
             
             Log.Debug("Trigger hp : " +  playerSpec->HP);
